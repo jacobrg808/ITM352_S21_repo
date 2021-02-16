@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="products-style.css">
     <script>
         var store_name = "Jacob Graham"
+        var first_name = "Jacob"
+        var last_name = "Graham"
     </script>
 </head>
 
 <body onload="hits_span.innerHTML = hits; spins_span.innerHTML = spins;">
-    <h1> <script>document.write(store_name);</script>'s Used Smartphone Store</h1>
+    <h1> <script>document.write(first_name + " " + last_name);</script>'s Used Smartphone Store</h1>
 
     <p style="text-align: center; font-weight: bold;">
         Hits:<span id="hits_span">0</span>
@@ -21,14 +23,7 @@
 
     <div>
     <main>
-    <section class="item" 
-    onmouseover="
-    hits_span.innerHTML = hits; 
-    spin_span.innerHTML = spins; 
-    this.className='item';" 
-    onclick="
-    this.className='item';
-    ">
+    <section class="item" onmouseover="this.className='item rotate'; spin_span.innerHTML = spins;" onclick="this.className='item'; hits_span.innerHTML = hits;">
         <h2>HTC</h2>
         <p>&dollar;40.00</p> 
         <img src="http://dport96.github.io/ITM352/morea/080.flow-control-II/HTC.jpg"> 
@@ -60,7 +55,7 @@
     </footer>
 </body>
 </html>
-<script>
-        var hits = 10
-        var spins = 100
+<script>        
+    var hits = 10
+    var spins = 100
 </script>
