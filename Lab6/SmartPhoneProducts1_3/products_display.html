@@ -7,18 +7,32 @@
     <title>Smartphone Products</title>
     <link rel="stylesheet" href="products-style.css">
     <script>
-        var store_name = "Jacob Graham"
-        var first_name = "Jacob"
-        var last_name = "Graham"
+        var full_name = "Jacob Graham";
+        var first_name = "Jacob";
+        var last_name = "Graham";
+        var date = new Date(); 
+        var hours = (date.getHours());
+        var minutes = (date.getMinutes());  
+        var am_pm = (hours < 12)?'AM':'PM';
     </script>
 </head>
 
-<body onload="hits_span.innerHTML = hits; spins_span.innerHTML = spins;">
-    <h1> <script>document.write(first_name + " " + last_name);</script>'s Used Smartphone Store</h1>
+<body onload="hit_span.innerHTML = hits; spin_span.innerHTML = spins;">
+    
+    <center>
+        <span style ="font-size: 600%;">
+            <script>
+                document.write("<b>" + first_name + "</b><i> " + last_name + "</i>'s")
+            </script>
+        </span>
+
+        <h1>Used Smartphone Store</h1>
+    </center>
 
     <p style="text-align: center; font-weight: bold;">
-        Hits:<span id="hits_span">0</span>
-        Spins:<span id="spins_span">0</span>
+        Hits:<span id="hit_span">0</span>
+        Spins:<span id="spin_span">0</span>
+        Hit/Spin:<span id="hit_spin_span">0</span>
     </p>
 
     <div>
@@ -26,10 +40,11 @@
     <section class="item" 
     onmouseover="
         this.className='item rotate'; 
-        spins_span.innerHTML = ++spins;"
+        spin_span.innerHTML = spins;
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML);"
     onclick="
         this.className='item'; 
-        hits_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;"
     >
         <h2>HTC</h2>
         <p>&dollar;40.00</p> 
@@ -38,10 +53,11 @@
     <section class="item" 
     onmouseover="
         this.className='item rotate'; 
-        spins_span.innerHTML = ++spins;"
+        spin_span.innerHTML = ++spins;
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML);"
     onclick="
         this.className='item'; 
-        hits_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;"
     >
         <h2>Apple</h2>
         <p>&dollar;75.00</p> 
@@ -50,10 +66,11 @@
     <section class="item" 
     onmouseover="
         this.className='item rotate'; 
-        spins_span.innerHTML = ++spins;"
+        spin_span.innerHTML = ++spins;
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML);"
     onclick="
         this.className='item'; 
-        hits_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;"
     >
         <h2>Nokia</h2>
         <p>&dollar;35.00</p> 
@@ -62,10 +79,11 @@
     <section class="item" 
     onmouseover="
         this.className='item rotate'; 
-        spins_span.innerHTML = ++spins;"
+        spin_span.innerHTML = ++spins;
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML);"
     onclick="
         this.className='item'; 
-        hits_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;"
     >
         <h2>Samsung</h2>
         <p>&dollar;45.00</p> 
@@ -74,10 +92,11 @@
     <section class="item" 
     onmouseover="
         this.className='item rotate'; 
-        spins_span.innerHTML = ++spins;"
+        spin_span.innerHTML = ++spins;
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML);"
     onclick="
         this.className='item'; 
-        hits_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;"
     >
         <h2>Blackberry</h2>
          <p>&dollar;10.00</p> 
@@ -86,12 +105,25 @@
     </main>
     </div>
 
-    <h1>Your one stop for used phones - <script>document.write(store_name)</script>'s
-    </h1>
+    <footer>
+        <script>
+            document.write (`
+            <table border="1" style="margin-left: auto; margin-right: auto; text-align: center;">
+                <tr><th colspan="2"><h1>Your one stop for used phones - ${first_name.charAt(0) + '.' + last_name.charAt(0) + '.'}'s</h1></th></tr>
+                <tr><td>1.</td><td><br />Copyright @ ${full_name}</td></tr>
+                <tr><td>2.</td><td><br />2021</td></tr>
+                <tr><td>3.</td><td><br />${hours + ':' + minutes + am_pm}</td></tr>
+            </table>
+            `);
+        </script>
+    </footer>
 
 </body>
+
 </html>
 <script>        
-    var hits = 0
-    var spins = 0
+    var hits = 0;
+    var spins = 0;
+    hits.toFixed(2);
+    spins.toFixed(2);
 </script>
