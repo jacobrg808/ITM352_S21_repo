@@ -15,6 +15,7 @@
         var hours = (date.getHours());
         var minutes = (date.getMinutes());  
         var am_pm = (hours < 12)?'AM':'PM';
+        var over_half = false;
     </script>
 </head>
 
@@ -34,6 +35,7 @@
         Hits:<span id="hit_span">0</span>
         Spins:<span id="spin_span">0</span>
         Hit/Spin:<span id="hit_spin_span">0</span>
+        You win:<span id="win_span">pending...</span>
     </p>
 
     <div>
@@ -42,10 +44,13 @@
     onmouseover="
         this.className='item rotate'; 
         spin_span.innerHTML = ++spins;
-        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);"
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);
+        over_half ||= ((hits/spins >= 0.5) && (hits < spins));
+        win_span.innerHTML = over_half;"
     onclick="
         this.className='item'; 
-        hit_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     >
         <h2>HTC</h2>
         <p>&dollar;40.00</p> 
@@ -55,10 +60,12 @@
     onmouseover="
         this.className='item rotate'; 
         spin_span.innerHTML = ++spins;
-        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);"
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     onclick="
         this.className='item'; 
-        hit_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     >
         <h2>Apple</h2>
         <p>&dollar;75.00</p> 
@@ -68,10 +75,12 @@
     onmouseover="
         this.className='item rotate'; 
         spin_span.innerHTML = ++spins;
-        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);"
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     onclick="
         this.className='item'; 
-        hit_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     >
         <h2>Nokia</h2>
         <p>&dollar;35.00</p> 
@@ -81,10 +90,12 @@
     onmouseover="
         this.className='item rotate'; 
         spin_span.innerHTML = ++spins;
-        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);"
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     onclick="
         this.className='item'; 
-        hit_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     >
         <h2>Samsung</h2>
         <p>&dollar;45.00</p> 
@@ -94,10 +105,12 @@
     onmouseover="
         this.className='item rotate'; 
         spin_span.innerHTML = ++spins;
-        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);"
+        hit_spin_span.innerHTML = (hit_span.innerHTML/spin_span.innerHTML).toFixed(2);
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     onclick="
         this.className='item'; 
-        hit_span.innerHTML = ++hits;"
+        hit_span.innerHTML = ++hits;
+        win_span.innerHTML = ((hits/spins >= 0.5) && (hits < spins));"
     >
         <h2>Blackberry</h2>
          <p>&dollar;10.00</p> 

@@ -1,0 +1,44 @@
+/* General */ 
+img {
+    width: 200px;
+    height: 200px;
+}
+
+/* Typography */  
+h1, h2 {
+    text-align: center;
+}
+
+/* Styling the products display */ 
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    background: url(Images/phone_globe.jpg) no-repeat 50% center;
+}
+
+/* Form styling */  
+body {
+    width: 800px; margin: 0 auto;
+}
+
+/* Block styling */ 
+body >div {
+    border: 5px solid black;
+    display: flex;
+}
+
+/* whirling dervish image game */
+.rotate img
+{
+  animation: rotation .3s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
