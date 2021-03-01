@@ -6,8 +6,6 @@
     <title>Smartphone Products</title>
     <link rel="stylesheet" href="products-style.css">
     <script>
-        item_number = 5
-
         var name1 = "HTC";
         var price1 = 40.00;
         var image1 = "http://dport96.github.io/ITM352/morea/080.flow-control-II/HTC.jpg";
@@ -34,7 +32,7 @@
     <div>
     <main>
     <script>
-        for(i = 1; i <= item_number; i++)
+        for(i = 1; eval("typeof name" + i) != 'undefined'; i++)
         document.write(
         `
         <section class="item">
