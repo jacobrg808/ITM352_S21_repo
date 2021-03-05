@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style type="text/css">
+      h2 {font-family: Arial, sans-serif; font-size: 50px; text-align: center;}
+      .board  {border-collapse: collapse; border-spacing: 0; margin-left: auto; margin-right: auto;}
+      .board td{font-family: Arial, sans-serif; font-size: 32px; padding:25px 25px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; border-color: black;}
+      .board th{font-family: Arial, sans-serif; font-size: 32px; font-weight: normal; padding: 25px 25px; border-style: solid; border-width: 1px; overflow: hidden; word-break: normal; border-color: black;}
+      .board .box{text-align: center; vertical-align: top}
+    </style>
+</head>
+<body>
+<h2>Tic Tac Toe</h2>
+
+<table class="board">
+<script>
+
+TicTacToe = ["x", "o"]
+
+document.write(`
+  <tr>
+    <th class="box">${TicTacToe[0]}</th>
+    <th class="box">${TicTacToe[1]}</th>
+    <th class="box">${TicTacToe[0]}</th>
+  </tr>
+  <tr>
+    <td class="box">${TicTacToe[1]}</td>
+    <td class="box">${TicTacToe[0]}</td>
+    <td class="box">${TicTacToe[1]}</td>
+  </tr>
+  <tr>
+    <td class="box">${TicTacToe[0]}</td>
+    <td class="box">${TicTacToe[1]}</td>
+    <td class="box">${TicTacToe[1]}</td>
+  </tr>
+`)
+
+</script>
+</table>
+</body>
+</html>
