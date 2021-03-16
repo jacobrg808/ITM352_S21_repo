@@ -1,0 +1,41 @@
+/* General */
+img {
+    width: 225px;
+    height: 200px;
+    /* Gray border */
+    border: 1px solid #ddd;
+    /* Rounded border */
+    border-radius: 5px;
+    /* Some padding */
+    padding: 5px;
+    /* Wrap */
+    margin-right:15px;
+}
+
+/* Add a hover effect (blue shadow) */
+img:hover {
+    box-shadow: 0 0 5px 1px black;
+}
+
+/* Typography */  
+h1, h2, h3, p {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* Background */
+body {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png) ivory;
+}
+
+/* Block styling */ 
+body >div {
+    border: 5px double black;
+    box-shadow: black;
+    display: flex;
+}
+
+input {
+    background-color: #e7e7e7; color: black;
+    border-radius: 12px;
+} /* https://www.w3schools.com/css/css3_buttons.asp */

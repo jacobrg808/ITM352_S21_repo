@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment1</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // derived from SmartphoneProducts3
+        product1 = {
+            brand : "Arceus LV.X",
+            image : ".\images\arceus.jpg",
+            price : 4.95,
+            desc : `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>`
+        },
+        product2 = {
+            brand : "Torterra LV.X",
+            image : ".\images\torterra.jpg",
+            price : 9.95,
+            desc : `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>`
+        },
+        product3 = {
+            brand : "Shining Fates Dragapult Premium Collection",
+            image : ".\images\dragapult_v.jpg",
+            price : 39.95,
+            desc : `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>`
+        },
+        product4 = {
+            brand : "Shining Fates Crobat Premium Collection",
+            image : ".\images\crobat.jpg",
+            price : 39.95,
+            desc : `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>`
+        },
+        product5 = {
+            brand : "Champion's Path Elite Trainer Box",
+            image : ".\images\torterra.jpg",
+            price : 49.95,
+            desc : `<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.</p>`
+        }
+
+        products = [product1, product2, product3, product4, product5]
+    </script>
+</head>
+<body>
+    <h1>Jacob's Pokemon Card Shop</h1>
+    <div id="navbar">
+        <ul>
+        <input type="button" value="Individual Cards" onclick="window.location.href = 'cards.html';">
+        <input type="button" value="Booster Packs" onclick="window.location.href = 'packs.html';">
+        <input type="button" value="Elite Trainer Boxes" onclick="window.location.href = 'boxes.html';">
+        </ul>
+    </div>
+    <div>
+    <main>
+    <script>
+        for(i = 0; i < products.length; i++)
+        document.write(
+        `
+        <section class="item">
+        <p><h2>${products[i].brand}</h2></p>
+        <p><img src="${products[i].image}"></p>
+        <p><b>$${products[i].price}</b></p>
+        <p>${products[i].desc}</p>
+        </section>
+        `
+        )
+    </script>
+</main>
+</div>
+<h3>Jacob Graham &copy;2021</h3>
+</body>
+</html>
