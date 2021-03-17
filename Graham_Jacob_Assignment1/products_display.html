@@ -1,0 +1,43 @@
+<!--  structure and some contents of file derived from SmartphoneProducts3 WOD  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment1</title>
+    <!--  Load style file -->
+    <link rel="stylesheet" href="style.css">
+    <!--  descriptions adapted from https://bulbapedia.bulbagarden.net/wiki/ and https://www.pokemon.com/us/pokemon-tcg/product-gallery/  -->
+    <script src="./products_data.json" type="text/javascript">        
+    </script>
+</head>
+<body>
+    <h1>Jacob's Pokemon Card Shop</h1>
+    <div id="navbar">
+        <ul>
+        <input type="button" value="Individual Cards" onclick="window.location.href = 'cards.html';">
+        <input type="button" value="Booster Packs" onclick="window.location.href = 'packs.html';">
+        <input type="button" value="Elite Trainer Boxes" onclick="window.location.href = 'boxes.html';">
+        </ul>
+    </div>
+<div>
+    <main>
+    <script>
+        // write products on page
+        for(i = 0; i < products.length; i++)
+        document.write(`
+        <section class="item">
+        <p><h2>${products[i].brand}</h2></p>
+        <p><img src="${products[i].image}"></p>
+        <p><b>$${products[i].price}</b></p>
+        <p>${products[i].desc}</p>
+        </section>
+        `)
+    </script>
+    </main>
+</div>
+<footer>
+    <h3>Jacob Graham &copy;2021</h3>
+</footer>
+</body>
+</html>
