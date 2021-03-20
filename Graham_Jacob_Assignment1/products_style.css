@@ -1,8 +1,9 @@
-/* Style sheet derived from SmartPhoneProducts3 */
+/* Style sheet derived from SmartPhoneProducts3 with modifications */
 
-/* General */
+/* Imaging */
 img {
-    width: auto;
+    display: inline-block;
+    max-width: 100%;
     height: auto;
     /* Gray border */
     border: 1px solid #ddd;
@@ -21,7 +22,9 @@ img:hover {
 
 /* Typography */  
 h1, h2, h3, p {
+    /* Center text */
     text-align: center;
+    /* Set font */
     font-family: 'Oswald', sans-serif;
 }
 

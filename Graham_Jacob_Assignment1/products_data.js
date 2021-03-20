@@ -1,4 +1,6 @@
-products = [ 
+// products object
+// descriptions adapted from https://bulbapedia.bulbagarden.net/wiki/ and https://www.pokemon.com/us/pokemon-tcg/product-gallery/
+var products = [ 
     {
         "brand" : "Arceus LV.X",
         "image" : "./images/arceus.jpg",

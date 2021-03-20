@@ -1,0 +1,18 @@
+/* Style sheet derived from SmartPhoneProducts3 with modifications */
+
+/* Background */
+body {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png) ivory;
+}
+
+/* Typography */  
+h1, h2, h3, p {
+    /* Set font */
+    font-family: 'Oswald', sans-serif;
+}
+
+/* https://www.w3schools.com/css/css3_buttons.asp */
+input {
+    background-color: #e7e7e7; color: black;
+    border-radius: 12px;
+}
