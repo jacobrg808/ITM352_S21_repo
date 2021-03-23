@@ -1,18 +1,23 @@
 /* Style sheet derived from SmartPhoneProducts3 with modifications */
 
-/* Background */
+/* Aesthetics */  
 body {
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png) ivory;
+    /* Typography */  
+        /* Set font */
+        font-family: 'Oswald', sans-serif;
+    /* Background */
+    background: url("./images/background.png") ivory;
 }
 
-/* Typography */  
-h1, h2, h3, p {
-    /* Set font */
-    font-family: 'Oswald', sans-serif;
-}
-
-/* https://www.w3schools.com/css/css3_buttons.asp */
-input {
-    background-color: #e7e7e7; color: black;
-    border-radius: 12px;
+/* Button styling */
+/* Modified from https://www.w3schools.com/css/css3_buttons.asp */
+.button {
+    background-color: #6c706c;
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

@@ -2,7 +2,6 @@
 
 /* Imaging */
 img {
-    display: inline-block;
     max-width: 100%;
     height: auto;
     /* Gray border */
@@ -11,8 +10,6 @@ img {
     border-radius: 5px;
     /* Some padding */
     padding: 5px;
-    /* Wrap */
-    margin-right:15px;
 }
 
 /* Add a hover effect (blue shadow) */
@@ -20,17 +17,22 @@ img:hover {
     box-shadow: 0 0 5px 1px black;
 }
 
-/* Typography */  
-h1, h2, h3, p {
-    /* Center text */
-    text-align: center;
-    /* Set font */
-    font-family: 'Oswald', sans-serif;
+/* Aesthetics */
+#banner {
+    /* Background */
+    background-image: url("./images/banner.png");
 }
 
-/* Background */
 body {
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/652/confectionary.png) ivory;
+    /* Typography */  
+        /* Center text */
+        text-align: center;
+        /* Set font */
+        font-family: 'Playfair Display';
+        font-style: normal;
+        font-weight: 500;
+    /* Background */
+    background: url("./images/background.png") ivory;
 }
 
 /* Block styling */ 
@@ -38,10 +40,18 @@ body >div {
     border: 5px double black;
     box-shadow: black;
     display: flex;
+    justify-content: center; 
 }
 
-/* https://www.w3schools.com/css/css3_buttons.asp */
-input {
-    background-color: #e7e7e7; color: black;
-    border-radius: 12px;
+/* Button styling */
+/* Modified from https://www.w3schools.com/css/css3_buttons.asp */
+.button {
+    background-color: #6c706c;
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
