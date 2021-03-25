@@ -4,41 +4,41 @@
 
 // Function adapted from Lab11
 function isNonNegInt(q, return_errors = false) {
-  errors = []; // assume no errors at first
-  if(q == '') q =0; // handle blank inputs as if they are 0
-  if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); // Check if string is a number value
-  else if (q < 0) errors.push('<font color="red">Negative value!</font>'); // Check if it is non-negative
-  else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); // Check that it is an integer
-  return return_errors ? errors : (errors.length == 0);
+    errors = []; // assume no errors at first
+    if(q == '') q =0; // handle blank inputs as if they are 0
+    if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); // Check if string is a number value
+    else if (q < 0) errors.push('<font color="red">Negative value!</font>'); // Check if it is non-negative
+    else if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); // Check that it is an integer
+    return return_errors ? errors : (errors.length == 0);
 }
 
 // This function will create rows of products with quantities for our invoice.
 function generate_item_rows(product_quantities_array) {
   for (i = 0; i < product_quantities_array.length; i++) {
-      qty = product_quantities_array[i];
-      errs = isNonNegInt(qty, true);
+        qty = product_quantities_array[i];
+        errs = isNonNegInt(qty, true);
     if(qty == 0) {
-      continue;
+        continue;
     }
     if(errs.length == 0) {
-      extended_price = qty * products[i].price;
-      subtotal += extended_price;
+        extended_price = qty * products[i].price;
+        subtotal = extended_price + subtotal;
     }
     else {
-      qty = `<span style="color:red;">${qty}<br>${errs.join("<br>")}</span>`;
+        qty = `<span style="color:red;">${qty}<br>${errs.join("<br>")}</span>`;
     }
     document.write(`
-    <tr>
-      <td width="43%">${products[i].brand}</td>
-      <td align="center" width="11%">${qty}</td>
-      <td width="13%">$${products[i].price}</td>
-      <td width="54%">$${extended_price}</td>
-    </tr>
+        <tr>
+        <td width="43%">${products[i].brand}</td>
+        <td align="center" width="11%">${qty}</td>
+        <td width="13%">$${products[i].price}</td>
+        <td width="54%">$${extended_price}</td>
+        </tr>
     `)
   }
 }
 
-quantities = [0,0,0,0,0]
+quantities = [1,0,0,0,0,0,0]
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,32 +69,31 @@ quantities = [0,0,0,0,0]
       <th style="text-align: center;" width="54%">Extended Price</th>
     </tr>
     <script>
-    // Generate Rows
-    generate_item_rows(quantities)
+        // Generate Rows
+        generate_item_rows(quantities)
 
-    // Compute tax
-    var tax_rate = 0.045
-    var tax_amount = tax_rate*subtotal;
+        // Compute tax
+        var tax_rate = 0.045
+        var tax_amount = tax_rate*subtotal;
 
-    // Compute shipping
-    if(subtotal <= 50) {
-      shipping = 0;
-    }
+        // Compute shipping
+        if(subtotal <= 50) {
+        shipping = 0;
+        }
 
-    else if(subtotal <=100) {
-      shipping = 5;
-    }
+        else if(subtotal <=100) {
+        shipping = 5;
+        }
 
-    else {
-      shipping = 0.05*subtotal;
-    }
+        else {
+        shipping = 0.05*subtotal;
+        }
 
-    // Compute subtotal
-    var subtotal = 0
+        // Compute subtotal
+        var subtotal = 0
 
-    // Compute grand total
-    var total = subtotal + tax_amount + shipping;
-    
+        // Compute grand total
+        var total = subtotal + tax_amount + shipping;
     </script>
 
     <tr>

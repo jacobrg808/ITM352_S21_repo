@@ -15,13 +15,6 @@
             "quantity" : 0
         },
         {
-            "brand" : "Trainer's Toolkit",
-            "image" : "./images/toolkit.jpg",
-            "price" : 29.95,
-            "desc" : "Comes with 4 booster packs, 2x Dedenne GX, 65 card sleeves, 1x tournament-legal coin, a set of damage counters, a set of die, a pack of 100 energy cards, and a box that you can store pokemon cards in.",
-            "quantity" : 0
-        },
-        {
             "brand" : "Shining Fates Crobat Premium Collection",
             "image" : "./images/crobat_coll.jpg",
             "price" : 39.95,
