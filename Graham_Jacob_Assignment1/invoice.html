@@ -7,6 +7,7 @@
 // params variable derived from Lab12
 let params = (new URL(document.location)).searchParams;
 var quantities = [];
+
     // Process invoice
     if (params.has('purchase_submit')) {
         for (i = 0; i < products.length; i++) {
@@ -15,12 +16,7 @@ var quantities = [];
                 quantities[i] = a_qty;
             }
         }
-    } 
-    else {
-        alert("Please enter a valid quantity.");
-        window.location.href = "products_display.html"
     }
-    console.log(quantities);
 
 </script>
 <!DOCTYPE html>
@@ -107,7 +103,7 @@ var quantities = [];
         // Tax Row
         document.write(`
         <tr>
-        <td style="text-align: center;" colspan="3" width="67%">Tax @ ${100*tax_rate.toFixed(4)}%</span></td>
+        <td style="text-align: center;" colspan="3" width="67%">Tax @ ${(tax_rate*100).toFixed(3)}%</span></td>
         <td width="54%">$${tax_amount.toFixed(2)}</td>
         </tr>
         `)
