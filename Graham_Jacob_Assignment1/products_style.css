@@ -8,19 +8,30 @@ img {
     border: 1px solid #ddd;
     /* Rounded border */
     border-radius: 5px;
-    /* Some padding */
+    /* Set padding */
     padding: 5px;
-}
-
-/* Add a hover effect (blue shadow) */
-img:hover {
+    /* Set shadows */
     box-shadow: 0 0 5px 1px black;
 }
 
 /* Aesthetics */
 #banner {
     /* Background */
-    background-image: url("./images/banner.png");
+    background-image: linear-gradient(to bottom right, turquoise, lightblue);
+}
+
+
+.item_display {
+    /* Set padding */
+    padding: 15px; 
+}
+
+.item_text {
+    /* Set padding */
+    padding: 25px;
+    justify-content: center;
+    background-image: linear-gradient(to bottom right, lightgrey, white);
+    width: 1000px;
 }
 
 body {
@@ -32,7 +43,8 @@ body {
         font-style: normal;
         font-weight: 500;
     /* Background */
-    background: url("./images/background.png") ivory;
+    /* Image taken from https://www.pinterest.com/pin/726064771157954704/ */
+    background: url("./images/background.png") ivory no-repeat center center fixed;
 }
 
 /* Block styling */ 

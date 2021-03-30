@@ -2,9 +2,11 @@
 
 /* Aesthetics */  
 body {
-    /* Typography */  
+    /* Typography */
         /* Set font */
-        font-family: 'Oswald', sans-serif;
+        font-family: 'Playfair Display';
+        font-style: normal;
+        font-weight: 500;
     /* Background */
     background: url("./images/background.png") ivory;
 }

@@ -4,7 +4,7 @@
             "brand" : "Torterra LV.X",
             "image" : "./images/torterra.jpg",
             "price" : 4.95,
-            "desc" : "Torterra is a Grass-type Level-Up Pokémon LV.X card. It was first released as part of the Diamond & Pearl expansion. A purchase will net you 1x Toterra LV.X card.",
+            "desc" : "Torterra is a Grass-type Level-Up Pokémon LV.X card. It was first released as part of the Diamond & Pearl expansion.",
             "quantity" : 0
         },
         {
@@ -26,13 +26,6 @@
             "image" : "./images/dragapult_coll.jpg",
             "price" : 39.95,
             "desc" : "Comes with 7 booster packs, 1x Dragapult V, 1x Dragapult VMAX, a promotional jumbo coin, and one promotional jumbo card.",
-            "quantity" : 0
-        },
-        {
-            "brand" : "Sky Legends Booster Box Japanese",
-            "image" : "./images/sky_legends_box_j.jpg",
-            "price" : 49.95,
-            "desc" : "Contains 30 booster packs of the Japan-only Sky Legends expansion to the Pokemon TCG. All cards are in Japanese.",
             "quantity" : 0
         },
         {
