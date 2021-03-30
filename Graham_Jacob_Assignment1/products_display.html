@@ -7,11 +7,12 @@
     function isNonNegInt(q, return_errors = false) {
         var errors = []; // assume no errors at first
         if(q=='') q = 0; // if text box is blank, show nothing
-        if (Number(q) != q) errors.push('<font color="red">Not a number!</font>'); // Check if string is a number value
+        if (Number(q) != q) errors.push('<font color="red">Please input a number. </font>'); // Check if string is a number value
         else {
-            if (q < 0) errors.push('<font color="red">Negative value!</font>'); // Check if it is non-negative
-            if (parseInt(q) != q) errors.push('<font color="red">Not an integer!</font>'); // Check that it is an integer
+            if (q < 0) errors.push('<font color="red">Please input a positive quantity. </font>'); // Check if it is non-negative
+            if (parseInt(q) != q) errors.push('<font color="red">Please input a whole number. </font>'); // Check that it is an integer
         }
+
         return return_errors ? errors : (errors.length == 0);
     }
 
@@ -19,9 +20,9 @@
     // Check the quantity inputted in the textbox
     function checkQuantityTextbox(qtyTextbox) {
         errs = isNonNegInt(qtyTextbox.value, true);
-        if (errs.length == 0) errs = ['You want:'];
-        if (qtyTextbox.value.trim() == '') errs = ['Quantity'];
-        document.getElementById(theTextbox.name + '_label').innerHTML = errs.join(", ");
+        if (errs.length == 0) errs = ['You want: '];
+        if (qtyTextbox.value.trim() == '') errs = ['Please type quantity desired: '];
+        document.getElementById(qtyTextbox.name + '_label').innerHTML = errs.join(", ");
     }
 
     // params and strcuture from Lab12 and Assignment1 example
@@ -35,20 +36,17 @@
             if (params.has(`quantity${i}`)) {
                 a_qty = params.get(`quantity${i}`);
                 // make textboxes sticky in case of invalid data
-                product_selection_form[`quantity${i}`].value = a_qty;
+                quantity_form[`quantity${i}`].value = a_qty;
                 total_qty = a_qty + total_qty; 
                 if(!isNonNegInt(a_qty)) {
                     has_errors = true; // check to see if there are any errors
-                    checkQuantityTextbox(product_selection_form[`quantity${i}`]); // show where the error is
+                    checkQuantityTextbox(quantity_form[`quantity${i}`]); // show where the error is
                 }
             }
         }
 
         // Provide alerts for errors when entering quantity
         if(has_errors) { // must give a valid quantity
-            alert("Please enter only valid quantities!");
-        } 
-        if(`quantity${i}` >= products[i].quantity.value) {
             alert("Please enter only valid quantities!");
         }
         else if(total_qty == 0) { // no quantity selections, just give a general alert
@@ -80,33 +78,34 @@
     <div id="banner"><h1>Jacob's Pokémon Card Shop</h1></div>
     <div>
     <main>
-    <script>
-    // write products on page
+        <form name="quantity_form" action="invoice.html">
+            <input class="button" type="submit" value="Submit Purchase" name="purchase_submit">
+            <script>
+            // write products on page
 
-    // write until products are undefined
-    // setup form
-    for(i = 0; i < products.length; i++) {
-        document.write(`
+            // write until products are undefined
+            // setup form
+            for(i = 0; i < products.length; i++) {
+                document.write(`
 
-            <section class="item_display"><br><img src="${products[i].image}" align="left"></br></section>
+                    <section class="item_display"><br><img src="${products[i].image}" align="left"></br></section>
 
-            <section class="item_text">
-                <p>
-                    <br><h2>${products[i].brand}</h2></br>
-                    <br>${products[i].desc}</br>
-                    <br><b>$${products[i].price}</b></br>
-                    <br><i>${products[i].quantity} in stock</i></br>
-                    <br><form name="quantity_form" action="invoice.html">
-                        <label id="quantity${i}_label">Quantity desired: </label>
-                        <input type="text" placeholder="0" name="quantity${i}" onkeyup="checkQuantityTextbox(this);">
-                        <input class="button" type="submit" value="Buy" name="purchase_submit">
-                    </form></br>
-                </p>
-            </section>
-        `)
-    }
-    </script>
-    
+                    <section class="item_text">
+                        <p>
+                            <br><h2>${products[i].brand}</h2></br>
+                            <br>${products[i].desc}</br>
+                            <br><b>$${products[i].price}</b></br>
+                            <br><i>${products[i].quantity} in stock</i></br>
+                            <br>
+                                <label id="quantity${i}_label">Please type quantity desired: </label>
+                                <input type="text" placeholder="0" name="quantity${i}" onkeyup="checkQuantityTextbox(this);">
+                            </br>
+                        </p>
+                    </section>
+                `)
+            }
+            </script>
+        </form>
     </main>
     </div>
     <footer>

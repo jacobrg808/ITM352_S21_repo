@@ -70,7 +70,7 @@ var quantities = [];
         }
         
         // Compute tax
-        var tax_rate = 0.045
+        var tax_rate = 0.04712
         var tax_amount = tax_rate*subtotal;
 
         // Compute shipping
@@ -100,15 +100,15 @@ var quantities = [];
         document.write(`
         <tr>
         <td style="text-align: center;" colspan="3" width="67%">Subtotal</td>
-        <td width="54%">$${subtotal}</td>
+        <td width="54%">$${subtotal.toFixed(2)}</td>
         </tr>
         `)
         
         // Tax Row
         document.write(`
         <tr>
-        <td style="text-align: center;" colspan="3" width="67%">Tax @ ${100*tax_rate}%</span></td>
-        <td width="54%">$${(tax_amount.toFixed(2))}</td>
+        <td style="text-align: center;" colspan="3" width="67%">Tax @ ${100*tax_rate.toFixed(4)}%</span></td>
+        <td width="54%">$${tax_amount.toFixed(2)}</td>
         </tr>
         `)
 
@@ -116,7 +116,7 @@ var quantities = [];
         document.write(`
         <tr>
         <td style="text-align: center;" colspan="3" width="67%">Shipping</span></td>
-        <td width="54%">$${(shipping.toFixed(2))}</td>
+        <td width="54%">$${shipping.toFixed(2)}</td>
         </tr>
         `)
 
