@@ -37,15 +37,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Page</title>
 </head>
+
 <body>
-    <form name="quantity_form" action="display_purchase.html" method="POST">
+    <form name="quantity_form" action="display_purchase?" method="POST">
         <label>Quantity desired:</label>
-        <input name="quantity_textbox" type="text" placeholder="0" onkeyup="checkQuantityTextbox(this);">
-        <span id="qty_textbox_message">Enter a quantity</span>
-        <br><input name="purchase_submit" type="submit" value="Purchase"><br>
+        <input name='quantity_textbox' type="text" placeholder="0" onkeyup="checkQuantityTextbox(this);">
+        <span id='qty_textbox_message'>Enter a quantity</span>
+        <br><input name='purchase_submit' type="submit" value="Purchase"><br>
     </form>
 </body>
 </html>
+
 <script>
     if (params.has('quantity_textbox')) {
         quantity_form['quantity_textbox'].value = params.get('quantity_textbox');

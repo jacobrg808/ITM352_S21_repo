@@ -2,8 +2,8 @@
 
 var express = require('express');
 var app = express();
-// var myParser = require("body-parser")
-// app.use(myParser.urlencoded({ extended: true }));
+var myParser = require("body-parser")
+app.use(myParser.urlencoded({ extended: true }));
 
 app.all('*', function (request, response, next) {
     console.log(request.method + ' to path ' + request.path + 'with query' + JSON.stringify(request.query));
