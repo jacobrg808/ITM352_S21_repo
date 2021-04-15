@@ -9,15 +9,13 @@ app.all('*', function (request, response, next) {
     next();
 });
 
-
 app.get('/test.html', function (request, response, next) {
     response.send('I got a request for /test');
 });
 
 app.post('/display_purchase', function (request, response, next) {
-    user_data = {'username':'itm352', 'password':'grader'};
     post_data = request.body;
-        post_data['quantity_textbox']; {
+        if(post_data['quantity_textbox']); {
             the_qty = post_data['quantity_textbox'];
             if(isNonNegInt(the_qty)) {
                 qstring = qs.stringify(request.query);
@@ -46,5 +44,3 @@ function isNonNegInt(q, return_errors = false) {
     }
     return return_errors ? errors : (errors.length == 0);
 }
-
-// if(user_data['username'] == post_data['username_texbox']) {}
