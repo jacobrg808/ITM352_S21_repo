@@ -18,6 +18,7 @@ img {
 #banner {
     /* Background */
     background-image: linear-gradient(to bottom right, turquoise, lightblue);
+    border: 5px double black;
 }
 
 .item_display {
@@ -53,7 +54,6 @@ body {
 
 /* Block styling */ 
 body >div {
-    border: 5px double black;
     box-shadow: black;
     display: flex;
     justify-content: center; 
