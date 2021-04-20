@@ -1,6 +1,10 @@
 /* Style sheet derived from SmartPhoneProducts3 with modifications */
 
 /* Aesthetics */  
+#invoice {
+    background-color: #EBEBEB;
+}
+
 body {
     /* Typography */
         /* Set font */

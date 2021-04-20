@@ -3,14 +3,13 @@ var express = require('express');
 var app = express();
 var myParser = require('body-parser')
 app.use(myParser.urlencoded({ extended: true }));
-var qs = require('qs')
 var fs  = require('fs')
 
 // read user data file
 var user_data_file = './user_data.json';
 if(fs.existsSync(user_data_file)) {
     var file_stats = fs.statSync(user_data_file);
-    // console.log(`${user_data_file} has ${["size"]}`);
+    console.log(`${user_data_file} has ${["size"]}`);
     var user_data = JSON.parse(fs.readFileSync('./user_data.json', 'utf-8'));
 }
 else {
@@ -36,7 +35,7 @@ app.post('/process_register', function(req, res) {
 });
 
 
-// console.log(user_data);
+console.log(user_data);
 
 app.get("/login", function (request, response) {
     // Give a simple login form
@@ -52,25 +51,24 @@ app.get("/login", function (request, response) {
 
 app.post("/login", function (request, response) {
     // Process login form POST and redirect to logged in page if ok, back to login page if not
-
-});
-
- // process login
-app.post('/process_login', function (request, response, next) {
-    let username_entered = request.body["uname"];
-    let password_entered = request.body["pword"];
-    if(typeof user_data[username_entered] != 'undefined') {
-        if(user_data[username_entered]['password'] == password_entered) {
-                response.send(`${username_entered} is logged in.`);
+    app.post('/process_login', function (request, response, next) {
+        let username_entered = request.body["uname"];
+        let password_entered = request.body["pword"];
+        if(typeof user_data[username_entered] != 'undefined') {
+            if(user_data[username_entered]['password'] == password_entered) {
+                    response.send(`${username_entered} is logged in.`);
+            }
+            else {
+                response.send(`${username_entered} is wrong`);
+            }
         }
         else {
-            response.send(`${username_entered} is wrong`);
+            response.send(`${username} entered not found.`);
         }
-    }
-    else {
-        response.send(`${username} entered not found.`);
-    }
+    });
 });
+
+
 
 app.use(express.static('./public')); // use express.static
 
