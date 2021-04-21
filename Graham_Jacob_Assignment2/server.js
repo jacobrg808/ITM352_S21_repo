@@ -73,7 +73,7 @@ app.post("/process_register", function (req, res) {
     console.log(qstr);
     var errors = [];
     // Setup character limitations (Letters only for name)
-    if (/^[a-zA-Z]+[ ]+[a-zA-Z]+$/.test(req.body.name)) {
+    if (/^[a-zA-Z]+$/.test(req.body.name)) {
     }
     else {
         errors.push('Please follow the format for names! (ex. John Smith)')
