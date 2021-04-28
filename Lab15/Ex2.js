@@ -6,6 +6,20 @@ app.use(myParser.urlencoded({ extended: true }));
 var fs  = require('fs')
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
+var session = require('express-session')
+
+app.use(session({secret: "ITM rocks!"}));
+
+// play with sessions
+app.get('/set_session', function (req, res, next) {
+    res.send(`Your session ID is ${req.session.id}`);
+    next();
+});
+
+app.get('/use_session', function (req, res, next) {
+    res.send(`Welcome ${req.session.id}`);
+    next();
+});
 
 // play with cookies
 app.get('/set_cookie', function (req, res, next) {
@@ -62,20 +76,42 @@ app.post('/process_register', function(req, res) {
 
 console.log(user_data);
 
-app.get("/login", function (request, response) {
+app.get("/login", function (req, res) {
     // Give a simple login form
+    if(typeof req.cookie['username'] != 'undefined') {
+        res.send(`${res.cookies['username']} is already logged in`);
+        return;
+    }
+    if(typeof req.session['last_login'] != 'undefined') {
+        last_login = 'Last login time was ' + req.session['last_login'];
+    }
+    else {
+        last_login = "First time login";
+    }
     str = `
-<form action="" method="POST">
-<input type="text" name="username" size="40" placeholder="enter username" ><br />
-<input type="password" name="password" size="40" placeholder="enter password"><br />
-<input type="submit" value="Submit" id="submit">
-</form>
+        <body>
+        Last login: ${last_login}
+        <form action="process_login" method="POST">
+        <input type="text" name="uname" size="40" placeholder="enter username" ><br />
+        <input type="password" name="pword" size="40" placeholder="enter password"><br />
+        <input type="submit" value="Submit" id="submit">
+        </form>
+        </body>
     `;
-    response.send(str);
+    res.send(str);
 });
 
 // Process login form POST and redirect to logged in page if ok, back to login page if not
 app.post('/process_login', function (request, response, next) {
+    if(typeof request.session['last_login'] != undefined) {
+        console.log("Last login time was" + request.session['last_login']);
+        request.session['last_login'] = Date();
+    }
+    else {
+        console.log("first time login")
+    }
+    request.session['last_login'] = Date();
+
     let username_entered = request.body["uname"];
     let password_entered = request.body["pword"];
     if(typeof user_data[username_entered] != 'undefined') {
