@@ -1,0 +1,51 @@
+<!-- Designed login.html with help from w3schools tutorial at https://www.w3schools.com/howto/howto_css_login_form.asp -->
+<!-- Structure and some contents of file derived from in-class examples, credit goes to DAN PORT. -->
+<!-- Load user data -->
+<script src="./user_data.json" type="json"></script>
+<!DOCTYPE html>
+<!-- Load font -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display">
+<!-- Load style file -->
+<link rel="stylesheet" href="./misc_style.css">
+<!--  Load favicon -->
+<link rel="icon" href="./images/icon.jpg">
+<script>
+    // params variable derived from Lab12, modified for Assignment2
+    let params = (new URL(document.location)).searchParams;
+
+    // give alert if username or password is incorrect
+    window.onload = function () {
+        if(params.has('accessError')) {
+            username_value = params.get('username');
+            alert('The username or password is incorrect!');
+        }
+    }
+</script>
+<body>
+    <form name="login" action="process_login" method=POST>
+    <div style="border:2px  solid transparent;">
+        <center><div class="container">
+        <h1><b>Login to Jacob's Pokemon Card Shop</b></h1>
+        <hr style="border: 1px  solid transparent;">
+
+            <div class="section">
+                <br><label><b>Username:</b></label></br>
+                <input name="username" class="input" style="padding:12px" type="text" placeholder="Enter email">
+            </div>
+
+            <div class="section">
+                <br><label><b>Password:</b></label></br>
+                <input name="password" class="input" type="text" style="padding:12px" placeholder="Enter password">  
+            </div>
+
+            <div>
+                <br><input type="submit" class="button" value="Login"></br>
+            </div>
+
+            <p><b>Still need to sign up?</b><br><input type="button" class="button" value="Register here" onclick="window.location.href = './register.html' + document.location.search;"></br></p>
+
+        </center></div>
+    </form>
+</body>
+</html>
+<script>login.action += document.location.search; // take login.action and query string</script>
