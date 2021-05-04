@@ -17,7 +17,8 @@ app.get('/set_session', function (req, res, next) {
 });
 
 app.get('/use_session', function (req, res, next) {
-    res.send(`Welcome ${req.session.id}`);
+    res.send(`Your session ID is ${req.session.id}`);
+    req.session.destroy();
     next();
 });
 
@@ -26,7 +27,8 @@ app.get('/set_cookie', function (req, res, next) {
     // console.log(req.cookies);
     let my_name ='Jacob Graham';
     // res.clearCookie('my_name');
-    res.cookie('my_name', my_name, {maxAge: 5000});
+    now = new Date();
+    res.cookie('my_name', my_name, {expire: 5000 + now.getTime()});
     res.send(`Cookie for ${my_name} sent`);
     next();
 });
@@ -34,11 +36,13 @@ app.get('/set_cookie', function (req, res, next) {
 // play with cookies
 app.get('/use_cookie', function (req, res, next) {
     // console.log(req.cookie);
-    if(typeof req.cookies["my_name"] != 'undefined'){    
-    res.send(`Hello ${req.cookies["my_name"]}!`);
+    if(typeof req.cookies["username"] != 'undefined'){   
+        let username = req.cookies["username"];
+        res.cookie('username', username, {"maxAge": 10000})    
+        res.send(`${user_data[username]["name"]} is logged in`);
     }
     else {
-        res.send("I don't know you!")
+        res.send("You are not logged in!")
     }
     next();
 });
@@ -47,7 +51,7 @@ app.get('/use_cookie', function (req, res, next) {
 var user_data_file = './user_data.json';
 if(fs.existsSync(user_data_file)) {
     var file_stats = fs.statSync(user_data_file);
-    console.log(`${user_data_file} has ${["size"]}`);
+    // console.log(`${user_data_file} has ${["size"]}`);
     var user_data = JSON.parse(fs.readFileSync('./user_data.json', 'utf-8'));
 }
 else {
@@ -105,7 +109,6 @@ app.get("/login", function (req, res) {
 app.post('/process_login', function (request, response, next) {
     if(typeof request.session['last_login'] != undefined) {
         console.log("Last login time was" + request.session['last_login']);
-        request.session['last_login'] = Date();
     }
     else {
         console.log("first time login")
@@ -116,7 +119,8 @@ app.post('/process_login', function (request, response, next) {
     let password_entered = request.body["pword"];
     if(typeof user_data[username_entered] != 'undefined') {
         if(user_data[username_entered]['password'] == password_entered) {
-                response.send(`${username_entered} is logged in.`);
+            response.cookie('username', username_entered, {"maxAge": 10000});    
+            response.send(`${username_entered} is logged in.`);
         }
         else {
             response.send(`${username_entered} is wrong`);
@@ -130,4 +134,4 @@ app.post('/process_login', function (request, response, next) {
 
 app.use(express.static('./public')); // use express.static
 
-app.listen(8080, () => console.log(`listening on port 8080`)); // output to console the port we are listening in on
+var listener = app.listen(8080, () => console.log(`listening on port 8080 ${listener.address}`)); // output to console the port we are listening in on

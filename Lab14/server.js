@@ -49,23 +49,21 @@ app.get("/login", function (request, response) {
     response.send(str);
 });
 
-app.post("/login", function (request, response) {
-    // Process login form POST and redirect to logged in page if ok, back to login page if not
-    app.post('/process_login', function (request, response, next) {
-        let username_entered = request.body["uname"];
-        let password_entered = request.body["pword"];
-        if(typeof user_data[username_entered] != 'undefined') {
-            if(user_data[username_entered]['password'] == password_entered) {
-                    response.send(`${username_entered} is logged in.`);
-            }
-            else {
-                response.send(`${username_entered} is wrong`);
-            }
+// Process login form POST and redirect to logged in page if ok, back to login page if not
+app.post('/process_login', function (request, response, next) {
+    let username_entered = request.body["uname"];
+    let password_entered = request.body["pword"];
+    if(typeof user_data[username_entered] != 'undefined') {
+        if(user_data[username_entered]['password'] == password_entered) {
+                response.send(`${username_entered} is logged in.`);
         }
         else {
-            response.send(`${username} entered not found.`);
+            response.send(`${username_entered} is wrong`);
         }
-    });
+    }
+    else {
+        response.send(`${username} entered not found.`);
+    }
 });
 
 

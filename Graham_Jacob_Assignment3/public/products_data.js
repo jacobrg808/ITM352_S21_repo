@@ -15,6 +15,7 @@ var products = [
         "desc" : "Torterra is a Grass-type Level-Up Pokémon LV.X card. It was first released as part of the Diamond & Pearl expansion.",
         "quantity" : 5
     },
+
     {
         "brand" : "Shining Fates Crobat Premium Collection",
         "image" : "./images/crobat_coll.jpg",
@@ -29,6 +30,7 @@ var products = [
         "desc" : "Comes with 7 booster packs, 1x Dragapult V, 1x Dragapult VMAX, a promotional jumbo coin, and one promotional jumbo card.",
         "quantity" : 10
     },
+    
     {
         "brand" : "Champion's Path Elite Trainer Box",
         "image" : "./images/charizard_etb.jpg",
