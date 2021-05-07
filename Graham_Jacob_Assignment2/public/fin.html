@@ -1,3 +1,14 @@
+<script>
+// params variable derived from Lab12, modified for Assignment2
+let params = (new URL(document.location)).searchParams;
+
+    // Retrieve user info
+    if (params.has('username')) {
+        var name = params.get('name')
+        var username = params.get('username')
+        var email = params.get('email')
+    }
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +24,15 @@
     <link rel="icon" href="./images/icon.jpg">
 </head>
 <body>
+    <script>
+    // Give personalized message to user
+    document.write (`
     <center>
-        <p><h1><b>Thank you for shopping at Jacob's Pokemon Card Shop!</b></h1></p>
-        <p><h1><b>If you have any questions or concerns, please email me at <a href = "mailto: jacobrg@hawaii.edu">jacobrg@hawaii.edu</a>.</b></h1></p>
-        <input type="button" class="button" value="Back to Home" onclick="window.location.href = 'index.html';">
+    <p><h1><b>Hello, ${name}! Thank you for shopping at Jacob's Pokemon Card Shop! An invoice has been sent to ${params.get('email')}.</b></h1></p>
+    <p><h1><b>If you have any questions or concerns, please email me at <a href = "mailto: jacobrg@hawaii.edu">jacobrg@hawaii.edu</a>.</b></h1></p>
+    <input type="button" class="button" value="Back to Home" onclick="window.location.href = 'index.html';">
     </center>
+    `)
+    </script>
 </body>
 </html>

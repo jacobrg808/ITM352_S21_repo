@@ -13,11 +13,10 @@
     // params variable derived from Lab12, modified for Assignment2
     let params = (new URL(document.location)).searchParams;
 
-    // give alert if username or password is incorrect
+    // if params have errors, give alert
     window.onload = function () {
-        if(params.has('accessError')) {
-            username_value = params.get('username');
-            alert('The username or password is incorrect!');
+        if (params.has('errors')) { 
+            alert('Unable to process, username or password is incorrect.');
         }
     }
 </script>

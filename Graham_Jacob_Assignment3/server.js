@@ -8,9 +8,6 @@ var myParser = require('body-parser')
 var express = require('express');
 var app = express();
 var fs  = require('fs')
-var cookieParser = require('cookie-parser');
-app.use(cookieParser());
-var session = require('express-session')
 
 // Setup app.all
 app.all('*', function (req, res, next) {
@@ -37,7 +34,7 @@ else {
 // Thanks to NOAH KIM for giving guidance on the functions and statements
 // Structure of process_login function from Lab14, modified for Assignment2
 app.post('/process_login', function (req, res) {
-    var LogError = [];
+    var errors = [];
     console.log(req.query);
     username = req.body.username.toLowerCase();
     // Check to see if info is defined
@@ -47,24 +44,26 @@ app.post('/process_login', function (req, res) {
             req.query.username = username;
             console.log(users_reg_data[req.query.username].name);
             req.query.name = users_reg_data[req.query.username].name;
+            console.log(users_reg_data[req.query.username].email);
+            req.query.email = users_reg_data[req.query.username].email;
             res.redirect('./invoice.html?' + queryString.stringify(req.query));
             return;
         }
         // Else push an error
         else {
-            LogError.push = ('Sorry, but the password you inputted is invalid!');  // Inform user that they inputted a wrong username
-            console.log(LogError);
+            errors.push = ('Sorry, but the password you inputted is invalid!');  // Inform user that they inputted a wrong username
+            console.log(errors);
             req.query.username = username;
             req.query.name = users_reg_data[username].name;
-            req.query.LogError = LogError.join(';');
+            req.query.errors = errors.join(';');
         }
     }
     // Else push an error
     else {
-        LogError.push = ('Sorry, but the username you inputted is invalid!'); // Inform user that they inputted a wrong username
-        console.log(LogError);
+        errors.push = ('Sorry, but the username you inputted is invalid!'); // Inform user that they inputted a wrong username
+        console.log(errors);
         req.query.username = username;
-        req.query.LogError = LogError.join(';');
+        req.query.errors = errors.join(';');
     }
     res.redirect('./login.html?' + queryString.stringify(req.query)); // Redirect to login page
 });

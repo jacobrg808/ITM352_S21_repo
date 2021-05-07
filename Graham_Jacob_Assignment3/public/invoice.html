@@ -6,12 +6,20 @@
 
 // params variable derived from Lab12, modified for Assignment2
 let params = (new URL(document.location)).searchParams;
+
+// Block user if they are not logged in/associated with a user
+if(params.has('username') == false) {
+    alert("Oops! You are supposed to be here! Please login or register first before making a purchase!");
+    window.location.replace('./index.html');
+}
+
 var quantities = [];
 
-    // Retrieve username and password
+    // Retrieve user info
     if (params.has('username')) {
         var name = params.get('name')
         var username = params.get('username')
+        var email = params.get('email')
     }
 
     // Process invoice
@@ -45,7 +53,7 @@ var quantities = [];
 <body>
 <script>
     // Give personalized message to user
-    if (name != 'undefined' && name !='') {
+    if (name !='undefined' && name !='') {
         document.write (`<b>Hello, ${name}! Please review your invoice below.</b>`)
     }
     else {
@@ -151,7 +159,11 @@ var quantities = [];
   <li>A subtotal over $50 will have free shipping.</li>
   <li>Subtotals over $100 will be charged 5% of the subtotal amount.</li>
 </p></b></div>
+<div><script>
+    // Thank you KIMBERLY MATUTINA for helping me figure out how to display the email
+    document.write(`<b>An invoice will be sent to ${params.get('email')}.</b>`);
+</script></div>
 <input type="button" class="button" value="Back to Home" onclick="window.location.href = 'index.html';" float:left>
-<input type="button" class="button" value="Confirm Purchase" onclick="window.location.href = 'fin.html';">
+<input type="button" class="button" value="Confirm Purchase" onclick="window.location.href = 'fin.html' + document.location.search;">
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!-- Structure and some contents of file derived from SmartphoneProducts3 WOD, Lab11, Lab12, Lab13, and Lab 14. Credit goes to DAN PORT. -->
+<!-- Idea for index directory from Lab5. Credit goes to DAN PORT. -->
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +12,15 @@
     <link rel="stylesheet" href="./products_style.css">
     <!--  Load favicon -->
     <link rel="icon" href="./images/icon.jpg">
+    <script src="./functions.js"></script> 
+    <script>
+    var products_data;
+    loadJSON('get_products_data', function(response) {
+        // Parsing JSON string into object
+        products_data = JSON.parse(response);
+    });
+    var this_product_key = ''
+    </script>
 </head>
 <body>
     <div>

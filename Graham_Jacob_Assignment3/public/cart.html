@@ -1,0 +1,10 @@
+<head>
+    <script>
+        var products_data;
+        loadJSON('get_products_data', function (res) {
+            // Parsing JSON string into object
+            products_data = JSON.parse(res)
+
+        });
+    </script>
+</head>
