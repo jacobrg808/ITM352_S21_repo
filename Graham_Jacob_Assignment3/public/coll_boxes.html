@@ -70,6 +70,8 @@
     <link rel="stylesheet" href="./products_style.css">
     <!--  Load favicon -->
     <link rel="icon" href="./images/icon.jpg">
+    <!--  Load navbar -->
+    <script src="./navbar.js"></script> 
 </head>
 <body>
     <div id="banner"><h1>Jacob's Pokémon Card Shop</h1></div>
@@ -85,13 +87,13 @@
             for(i = 0; i < products.length; i++) {
                 document.write(`
 
-                    <section class="item_display"><br><img src="${products[i].image}" align="left"></br></section>
+                    <section class="item_display"><br><img src="${coll_boxes[i].image}" align="left"></br></section>
 
                     <section class="item_text">
                         <p>
-                            <br><h2>${products[i].brand}</h2></br>
-                            <br>${products[i].desc}</br>
-                            <br><b>$${products[i].price}</b></br>
+                            <br><h2>${coll_boxes[i].brand}</h2></br>
+                            <br>${coll_boxes[i].desc}</br>
+                            <br><b>$${coll_boxes[i].price}</b></br>
                             <br>
                                 <label id="quantity${i}_label">Please type quantity desired: </label>
                                 <input type="text" placeholder="0" name="quantity${i}" onkeyup="checkQuantityTextbox(this);">
