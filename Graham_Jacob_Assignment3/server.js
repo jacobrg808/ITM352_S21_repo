@@ -6,6 +6,8 @@ var data = require('./public/products_data.js')
 var products = data.products;
 const queryString = require('query-string');
 var myParser = require('body-parser')
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var express = require('express');
 var app = express();
 var fs  = require('fs')
@@ -17,6 +19,7 @@ app.all('*', function (req, res, next) {
 });
 
 app.use(myParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Set userData equal to user_data.json
 var userData = './user_data.json'; 
@@ -143,7 +146,7 @@ app.post("/process_register", function (req, res) {
     }
 });
 
-// Derived from Lab 14 and Assigment2 screencast
+// Derived from Lab 14 and Assigment2 screencast by DAN PORT
 // Take form and process it given that the information submitted is ok
 app.post("/process_purchase", function (req, res) {
     let POST = req.body;
@@ -151,23 +154,30 @@ app.post("/process_purchase", function (req, res) {
     if (typeof POST['purchase_submit'] != 'undefined') {
         var hasValidQty = true; // Assume that quantity is valid
         var hasQty = false;
+        product_key = POST["product_key"];
+        products = products[product_key];
         for (i = 0; i < products.length; i++) {
-            quantity = POST[`quantity${i}`]; // Set QtyCheck equal to POST[`quantity${i}`]
-            if (quantity > 0) {
+            qtyCheck = POST[`quantity${i}`]; // Set qtyCheck equal to POST[`quantity${i}`]
+            if (qtyCheck > 0) {
                 hasQty = true // Has non-zero quantity
             }
-            if (isNonNegInt(quantity) == false) {
+            if (isNonNegInt(qtyCheck) == false) {
                 hasValidQty = false // Has both valid quantity and non-negative integer
             }
         }
-        // Given the the quantities inputted are valid, redirect the user back to index
-        const stringified = queryString.stringify(POST); // If all quantities are valid then go to login.html with query string containing the order quantities
-        if (hasValidQty && hasQty) {
-            res.redirect("./login.html?" + stringified); // Directs user from products_display.html to login.html with the query string that has the order quantities
+        if (hasValidQty) {
+            if (typeof req.session.cart == "undefined") {
+                req.session.cart = {};
+            }
+            req.session.cart[product_key] = quantities;
+            POST["message"] = "Successfully added to cart!";
         } 
-        else { 
-            res.redirect("./index.html?" + stringified)
+        else {
+            POST["message"] = "Oops! We couldn't add that to the cart!";
         }
+        const stringified = queryString.stringify(POST);
+        console.log(req.session);
+        res.redirect(`./products_display.html?${stringified}`);
     }
 });
 
