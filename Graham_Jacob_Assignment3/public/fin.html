@@ -2,6 +2,12 @@
 // params variable derived from Lab12, modified for Assignment2
 let params = (new URL(document.location)).searchParams;
 
+// Block user if they are not logged in/associated with a user
+if(params.has('username') == false) {
+    alert("Oops! You are supposed to be here! Please login or register first before making a purchase!");
+    window.location.replace('./index.html');
+}
+
     // Retrieve user info
     if (params.has('username')) {
         var name = params.get('name')
@@ -19,7 +25,7 @@ let params = (new URL(document.location)).searchParams;
     <!--  Load font -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display">
     <!--  Load style file -->
-    <link rel="stylesheet" href="./misc_style.css">
+    <link rel="stylesheet" type="text/css" href="./style_misc.css">
     <!--  Load favicon -->
     <link rel="icon" href="./images/icon.jpg">
 </head>

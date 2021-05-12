@@ -1,0 +1,110 @@
+/* Cart styling */
+/* Modified from https://www.w3schools.com/howto/howto_css_checkout_form.asp */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+
+.col-25 {
+    flex: 25%;
+}
+
+.col-50 {
+    flex: 50%;
+}
+
+.col-75 {
+    flex: 75%;
+    padding: 0 16px;
+}
+
+.container {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+
+input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.icon-container {
+    margin-bottom: 20px;
+    padding: 7px 0;
+    font-size: 24px;
+}
+
+span.price {
+    float: right;
+    color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+    .row {
+        flex-direction: column-reverse;
+    }
+    .col-25 {
+        margin-bottom: 20px;
+    }
+}
+
+/* Button styling */
+/* Modified from https://www.w3schools.com/css/css3_buttons.asp */
+.button {
+    background-color: #6c706c;
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+/* Navbar styling */
+/* Modified from https://www.w3schools.com/howto/howto_css_navbar_icon.asp */
+.navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+
+/* Navbar links */
+.navbar a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+        text-decoration: none;
+    font-size: 17px;
+}
+
+/* Navbar links on mouse-over */
+.navbar a:hover {
+    background-color: #000;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+    float: right;
+}
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+    .navbar a {
+        float: none;
+        display: block;
+    }
+}

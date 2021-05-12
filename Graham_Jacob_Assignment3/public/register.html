@@ -5,9 +5,13 @@
 <!--  Load font -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display">
 <!--  Load style file -->
-<link rel="stylesheet" href="./misc_style.css">
+<link rel="stylesheet" type="text/css" href="./style_misc.css">
 <!--  Load favicon -->
 <link rel="icon" href="./images/icon.jpg">
+<!-- Load an icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--  Load navbar -->
+<script src="./navbar.js"></script>
 <script>
     // params from Lab12, modified for Assignment2
     let params = (new URL(document.location)).searchParams
@@ -26,7 +30,8 @@
 <body>
     <form action="process_register" method="POST">
         <center><div class="container">
-            <h1>Register for Jacob's Pokemon Card Shop</h1>
+            <div><p><script>navbar();</script></p></div>
+            <div id="banner"><h1>Register for Jacob's Pokemon Card Shop</h1></div>
             <p>Please fill in this form to create an account. Please follow the suggested formats.</p>
             <hr style="border: 1px  solid transparent;">
 

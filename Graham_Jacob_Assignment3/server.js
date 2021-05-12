@@ -148,7 +148,7 @@ app.post("/process_register", function (req, res) {
 
 // Derived from Lab 14 and Assigment2 screencast by DAN PORT
 // Take form and process it given that the information submitted is ok
-app.post("/process_purchase", function (req, res) {
+app.post("/process_cart", function (req, res) {
     let POST = req.body;
     console.log(POST)
     if (typeof POST['purchase_submit'] != 'undefined') {

@@ -6,9 +6,13 @@
 <!-- Load font -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display">
 <!-- Load style file -->
-<link rel="stylesheet" href="./misc_style.css">
+<link rel="stylesheet" type="text/css" href="./style_misc.css">
 <!--  Load favicon -->
 <link rel="icon" href="./images/icon.jpg">
+<!-- Load an icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--  Load navbar -->
+<script src="./navbar.js"></script> 
 <script>
     // params variable derived from Lab12, modified for Assignment2
     let params = (new URL(document.location)).searchParams;
@@ -24,7 +28,8 @@
     <form name="login" action="process_login" method=POST>
     <div style="border:2px  solid transparent;">
         <center><div class="container">
-        <h1><b>Login to Jacob's Pokemon Card Shop</b></h1>
+        <div><p><script>navbar();</script></p></div>
+        <div id="banner"><h1>Login to Jacob's Pokemon Card Shop</h1></div>
         <hr style="border: 1px  solid transparent;">
 
             <div class="section">
