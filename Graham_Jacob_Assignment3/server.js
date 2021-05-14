@@ -165,7 +165,7 @@ app.post("/process_register", function (req, res) {
     if (errors.length == 0) {
         POST = req.body;
         console.log('no errors');
-        var username = POST["username"];
+        var registered_username = POST["username"];
         users_reg_data[registered_username] = {}; 
         users_reg_data[registered_username].name = req.body.name;
         users_reg_data[registered_username].password = req.body.password; 
@@ -186,7 +186,7 @@ app.post("/process_register", function (req, res) {
 
 // Process logout
 app.get("/logout", function (req, res) {
-    str = `<script>alert('${req.body["username"]} has successfully logged out!'); location.href="./index.html";</script>`; // Setup string
+    str = `<script>alert('Successfully logged out!'); location.href="./index.html";</script>`; // Setup string
     res.clearCookie('username'); // Clear cookie data related to username
     res.send(str); // Send string
     req.session.destroy(); // End session
@@ -204,6 +204,7 @@ app.post("/gen_invoice", function (req, res) {
 
     <br><b>Thank you for shopping at Jacob's Pokémon Card Shop!</b></br>
     <br><b>An email has been sent to ${email}.</b></br>
+    <br><b><a href="/logout">Clear cookies and sessions (Logout)</a></b></br>
 
     <table id="invoice" border="2">
       <tbody>
