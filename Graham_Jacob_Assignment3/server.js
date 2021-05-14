@@ -186,44 +186,23 @@ app.post("/process_register", function (req, res) {
 
 // Process logout
 app.get("/logout", function (req, res) {
-    str = `<script>alert('${req.body["username"]} have successfully logged out!'); location.href="./index.html";</script>`; // Setup string
+    str = `<script>alert('${req.body["username"]} has successfully logged out!'); location.href="./index.html";</script>`; // Setup string
     res.clearCookie('username'); // Clear cookie data related to username
     res.send(str); // Send string
     req.session.destroy(); // End session
     res.redirect('./index.html'); // Redirect user to home page
 });
 
-// Generate invoice, got inspiration from the Assignment3 examples and https://stackoverflow.com/questions/19737415/express-creating-cookie-with-json
+// Generate invoice, got inspiration from the Assignment3 examples, and information from https://stackoverflow.com/questions/4225030/jquery-save-json-data-object-in-cookie, and https://stackoverflow.com/questions/19737415/express-creating-cookie-with-json
 app.post("/gen_invoice", function (req, res) {
-    cart = JSON.parse(req.query['cartData']); 
+    cart = JSON.parse(req.query['cartData']);
     cookie = JSON.parse(req.query['cookieData']);
-    var theCookie = cookie.split(';'); 
-    for (i in theCookie) {
-        function split(theCookie) { 
-            var i = theCookie.indexOf("=");
-            if (i > 0) {
-                return theCookie.slice(0, i);
-            }
-            else {
-                return "";
-            }
-        };
-
-        // Setup key
-        var key = split(theCookie[i]); 
-        if (key == ' username') { 
-            var theUsername = theCookie[i].split('=').pop(); // set username
-        };
-        if (key == ' email') {
-            var email = theCookie[i].split('=').pop(); // set email
-        };
-    }
-
+    var email = users_reg_data[req.cookies.username].email;
     str = `
     <link href="./style/style_misc.css" rel="stylesheet">
     <h1>Purchase confirmed!</h1>
 
-    <br><b>Thank you for shopping at Jacob's Pokémon Card Shop! An invoice has been sent to ${theUsername}.</b></br>
+    <br><b>Thank you for shopping at Jacob's Pokémon Card Shop!</b></br>
     <br><b>An email has been sent to ${email}.</b></br>
 
     <table id="invoice" border="2">
@@ -325,9 +304,9 @@ app.post("/gen_invoice", function (req, res) {
     };
 
     // Send mail, derived from https://nodemailer.com/about/
-    transporter.sendMail(mailTemplate, function (errors, info) {
-        if (errors) {
-            console.log(errors); // report any errors to the console
+    transporter.sendMail(mailTemplate, function (error, info) {
+        if (error) {
+            console.log(error); // report any errors to the console
         }
         else {
             console.log('Email sent: ' + info.res); // otherwise aknowldge that the email has been sent

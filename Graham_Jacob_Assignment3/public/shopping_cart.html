@@ -59,7 +59,7 @@ let params = (new URL(document.location)).searchParams;
             window.location.reload();
         }
         else if (theUsername == '') {
-            alert(`You can log in the view the cart.`);
+            alert(`Please log in first before checking out.`);
             window.location.href = './login.html';
         }
         else {
@@ -93,7 +93,7 @@ let params = (new URL(document.location)).searchParams;
     <h1>Shopping Cart</h1>
     <script>
         var theUser = getCookie('name'); 
-        var theUsername = getCookie('username'); 
+        var theUsername = getCookie('username');
 
         // If the user makes it to the shopping cart page, give messages
         if (theUsername != '') {
@@ -105,7 +105,7 @@ let params = (new URL(document.location)).searchParams;
         // Give a message to log in if no cookies are detected
         else {
             document.write(`
-                <b>You are not logged in: Click <a href="login.html">here</a> to log in</b>
+                <b>You are not logged in. Click <a href="login.html">here</a> to log in</b>
             `)
         };
     </script>
@@ -226,7 +226,7 @@ let params = (new URL(document.location)).searchParams;
     <!-- Thank you KIMBERLY MATUTINA for helping me with email and the flow of the cart and invoice -->
     <div>
     <input type="submit" class="button" value="Continue Shopping" onclick="window.location.href = './index.html';" float:left>
-    <input type="submit" class="button" value="Confirm Purchase" onclick="scanCart();">
+    <input name="purchase_submit" type="submit" class="button" value="Confirm Purchase" onclick="scanCart();">
     </div>
 </body>
 </html>
