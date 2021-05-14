@@ -6,7 +6,7 @@
 <!-- Load font -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display">
 <!-- Load style file -->
-<link rel="stylesheet" type="text/css" href="./style_misc.css">
+<link rel="stylesheet" type="text/css" href="./style/style_misc.css">
 <!--  Load favicon -->
 <link rel="icon" href="./images/icon.jpg">
 <!-- Load an icon library -->
@@ -20,12 +20,33 @@
     // if params have errors, give alert
     window.onload = function () {
         if (params.has('errors')) { 
+            username.value = params.get('username'); // Button sticky fix
             alert('Unable to process, username or password is incorrect.');
+        }
+    }
+
+    // setCookie from w3schools at https://www.w3schools.com/js/js_cookies.asp
+    function setCookie(cname, cvalue, exdays) {
+        var date = new Date(); // Draw from current time
+        date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + date.toUTCString(); // Set up an expiration
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"; // Put into cookie
+    }
+
+    // deleteAllCookies function derived from https://stackoverflow.com/questions/179355/clearing-all-cookies-with-javascript
+    function deleteAllCookies() {
+        var cookies = document.cookie.split(";"); // Divide cookies
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT"; // Set cookie equal to name
         }
     }
 </script>
 <body>
-    <form name="login" action="process_login" method=POST>
+    <form name="login_form" action="/process_login" method="POST">
     <div style="border:2px  solid transparent;">
         <center><div class="container">
         <div><p><script>navbar();</script></p></div>
@@ -34,16 +55,16 @@
 
             <div class="section">
                 <br><label><b>Username:</b></label></br>
-                <input name="username" class="input" style="padding:12px" type="text" placeholder="Enter email">
+                <input name="username" id="username" class="input" style="padding:12px" type="text" placeholder="Enter email">
             </div>
 
             <div class="section">
                 <br><label><b>Password:</b></label></br>
-                <input name="password" class="input" type="text" style="padding:12px" placeholder="Enter password">  
+                <input name="password" id="password" class="input" type="text" style="padding:12px" placeholder="Enter password">  
             </div>
 
             <div>
-                <br><input type="submit" class="button" value="Login"></br>
+                <br><input name="login" type="submit" class="button" value="Login"></br>
             </div>
 
             <p><b>Still need to sign up?</b><br><input type="button" class="button" value="Register here" onclick="window.location.href = './register.html' + document.location.search;"></br></p>
@@ -52,4 +73,3 @@
     </form>
 </body>
 </html>
-<script>login.action += document.location.search; // take login.action and query string</script>

@@ -15,6 +15,18 @@ var cards = [
         "desc" : "Torterra LV. X is a Grass-type Level-Up Pokémon LV.X card. It was first released as part of the Diamond & Pearl expansion.",
     },
     {   
+        "brand" : "Rayquaza GX",
+        "image" : "./images/rayquaza.jpg",
+        "price" : 4.95,
+        "desc" : "Rayquaza GX is a Dragon-type Basic Pokémon-GX card. It was first released as part of the Celestial Storm expansion.",
+    },
+    {   
+        "brand" : "Lycanroc GX",
+        "image" : "./images/lycanroc.jpg",
+        "price" : 4.95,
+        "desc" : "Lycanroc GX is a Fighting-type Stage 1 Pokémon-GX card. It was first released as one of the SM Black Star Promos.",
+    },
+    {   
         "brand" : "Dedenne GX",
         "image" : "./images/dedenne.jpg",
         "price" : 4.95,
@@ -26,7 +38,7 @@ var coll_boxes = [
         "brand" : "Shining Fates Crobat Premium Collection",
         "image" : "./images/crobat_coll.jpg",
         "price" : 39.95,
-        "desc" : "Comes with 7 booster packs, 1x Dragapult V, 1x Dragapult VMAX, a promotional jumbo coin, and one promotional jumbo card.",
+        "desc" : "Comes with 7 booster packs, 1x Crobat V, 1x Crobat VMAX, a promotional jumbo coin, and one promotional jumbo card.",
     },
     {
         "brand" : "Shining Fates Dragapult Premium Collection",
@@ -35,13 +47,37 @@ var coll_boxes = [
         "desc" : "Comes with 7 booster packs, 1x Dragapult V, 1x Dragapult VMAX, a promotional jumbo coin, and one promotional jumbo card.",
     },
     {
+        "brand" : "Charizard Premium Collection",
+        "image" : "./images/charizard_coll.jpg",
+        "price" : 39.95,
+        "desc" : "Comes with 7 booster packs, 1x Charizard GX, a promotional jumbo coin, and one promotional jumbo card.",
+    },
+    {
+        "brand" : "Espeon Premium Collection",
+        "image" : "./images/espeon_coll.jpg",
+        "price" : 39.95,
+        "desc" : "Comes with 7 booster packs, 1x Espeon GX, a promotional jumbo coin, and one promotional jumbo card.",
+    },
+    {
         "brand" : "Eternatus Premium Collection",
         "image" : "./images/eternatus_coll.jpg",
         "price" : 39.95,
         "desc" : "Comes with 7 booster packs, 1x Eternatus V, 1x Eternatus VMAX, a promotional jumbo coin, and one promotional jumbo card.",
     }
 ];
-var etbs = [    
+var etbs = [   
+    {
+        "brand" : "Battles Styles Urshifu-Rapid Strike Elite Trainer Box",
+        "image" : "./images/battle_r_etb.jpg",
+        "price" : 44.95,
+        "desc" : "Comes with 8 booster packs, 1x Urshifu Rapid-Strike, 65 card sleeves, 45 Pokémon TCG Energy cards, and a box that you can store pokemon cards in.",
+    },
+    {
+        "brand" : "Battle Style Urshifu-Single Strike Elite Trainer Box",
+        "image" : "./images/battle_s_etb.jpg",
+        "price" : 44.95,
+        "desc" : "Comes with 8 booster packs, 1x Urshifu Single-Strike, 65 card sleeves, 45 Pokémon TCG Energy cards, and a box that you can store pokemon cards in.",
+    }, 
     {
         "brand" : "Champion's Path Elite Trainer Box",
         "image" : "./images/charizard_etb.jpg",
@@ -50,37 +86,37 @@ var etbs = [
     },
     {
         "brand" : "Shining Fates Elite Trainer Box",
-        "image" : "./images/charizard_etb.jpg",
+        "image" : "./images/eevee_etb.jpg",
         "price" : 49.95,
         "desc" : "Comes with 10 booster packs, 1x Eevee V, 65 card sleeves, 45 Pokémon TCG Energy cards, and a box that you can store pokemon cards in.",
     },
     {
         "brand" : "Hidden Fates Elite Trainer Box",
-        "image" : "./images/charizard_etb.jpg",
+        "image" : "./images/trio_etb.jpg",
         "price" : 49.95,
         "desc" : "Comes with 10 booster packs, 1x Legendary Bird Trio (Articuno, Zapdos, Moltres) V, 65 card sleeves, 45 Pokémon TCG Energy cards, and a box that you can store pokemon cards in.",
     }
 ];
 
 // Setup product types
-var products_setup = [
+var products_array = [
     {
-    "type" : "cards"
+    'type' : "cards"
     },
     {
-    "type" : "coll_boxes"
+    'type' : "coll_boxes"
     },
     {
-    "type" : "etbs"
+    'type' : "etbs"
     }
 ]
 
 // Setup products object
-var products = {
-    "Cards" : cards,
-    "Premium Collection Boxes" : coll_boxes,
-    "ETBs" : etbs
+var productsList = {
+    "cards" : cards,
+    "coll_boxes" : coll_boxes,
+    "etbs" : etbs
 }
 
 // export products module
-if (typeof module != 'undefined') {module.exports.products = products;}
+if (typeof module != 'undefined') {module.exports.productsList = productsList;}

@@ -5,7 +5,7 @@
 <!--  Load font -->
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display">
 <!--  Load style file -->
-<link rel="stylesheet" type="text/css" href="./style_misc.css">
+<link rel="stylesheet" type="text/css" href="./style/style_misc.css">
 <!--  Load favicon -->
 <link rel="icon" href="./images/icon.jpg">
 <!-- Load an icon library -->
@@ -20,15 +20,12 @@
     window.onload = function () {
         if (params.has('errors')) { 
             alert('Unable to process, please fix these errors: \n' + params.get('errors'));
-            register["fullname"].value = params.get("fullname");
-            register["username"].value = params.get("username");
-            register["email"].value = params.get("email");
         }
     }
 </script>
 </head>
 <body>
-    <form action="process_register" method="POST">
+    <form name="register" action="/process_register" method="POST">
         <center><div class="container">
             <div><p><script>navbar();</script></p></div>
             <div id="banner"><h1>Register for Jacob's Pokemon Card Shop</h1></div>
@@ -69,5 +66,5 @@
 </body>
 </html>
 <script>
-    register.action += document.location.search; // save inputted query string
+register.action += document.location.search; // save inputted query string
 </script>

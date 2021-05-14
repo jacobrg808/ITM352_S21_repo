@@ -15,13 +15,6 @@ img {
 }
 
 /* Aesthetics */
-#banner {
-    /* Background */
-    background-image: "./images/banner.png";
-    background-color: turquoise;
-    border: 5px transparent;
-}
-
 .item_display {
     /* Set padding */
     padding: 15px; 
@@ -32,7 +25,7 @@ img {
     padding: 25px;
     justify-content: center;
     background-image: linear-gradient(to bottom right, lightgrey, white);
-    width: 1000px;
+    width: 1250px;
 }
 
 p {
@@ -50,7 +43,7 @@ body {
         font-weight: 500;
     /* Background */
     /* Image taken from https://www.pinterest.com/pin/726064771157954704/ */
-    background: url("./images/background.png") ivory no-repeat center center fixed;
+    background: url("/images/background.png") ivory no-repeat center center fixed;
 }
 
 /* Block styling */ 
@@ -97,7 +90,7 @@ body >div {
 }
 
 /* Right-aligned section inside the top navigation */
-.topnav-right {
+.navbar .topnav-right {
     float: right;
 }
 

@@ -1,12 +1,6 @@
 /* Style sheet derived from SmartPhoneProducts3 with modifications */
 
-/* Aesthetics */  
-#banner {
-    /* Background */
-    background-image: "./images/banner.png";
-    border: 5px transparent;
-}
-
+/* Aesthetics */
 #invoice {
     background-color: #EBEBEB;
 }
@@ -18,7 +12,7 @@ body {
         font-style: normal;
         font-weight: 500;
     /* Background */
-    background: url("./images/background.png") ivory;
+    background: url("/images/background.png") ivory no-repeat center center fixed;
 }
 
 /* Button styling */
@@ -58,7 +52,7 @@ body {
 }
 
 /* Right-aligned section inside the top navigation */
-.topnav-right {
+.navbar .topnav-right {
     float: right;
 }
 
