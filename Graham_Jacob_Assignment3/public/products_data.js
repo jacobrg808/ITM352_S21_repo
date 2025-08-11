@@ -1,5 +1,4 @@
-// Products Data
-// Descriptions adapted from https://bulbapedia.bulbagarden.net/wiki/ and https://www.pokemon.com/us/pokemon-tcg/product-gallery/
+// Product catalog data
 
 var cards = [
     {
@@ -98,25 +97,11 @@ var etbs = [
     }
 ];
 
-// Setup product types
-var products_array = [
-    {
-    'type' : "cards"
-    },
-    {
-    'type' : "coll_boxes"
-    },
-    {
-    'type' : "etbs"
-    }
-]
-
-// Setup products object
+// Products organized by category
 var productsList = {
     "cards" : cards,
     "coll_boxes" : coll_boxes,
     "etbs" : etbs
 }
 
-// export products module
 if (typeof module != 'undefined') {module.exports.productsList = productsList;}

@@ -1,22 +1,26 @@
 {
   "dport": {
     "name": "Dan Port",
-    "password": "portspassword",
-    "email": "dport@hawaii.edu"
+    "password": "$2b$12$gQt7bYzn9j7b8MGw2FZPNuTmQzhhABQ2SDiGcG8na8PAzhqn/02We",
+    "email": "dport@hawaii.edu",
+    "migratedAt": "2025-08-11T02:23:54.250Z"
   },
   "kazman": {
     "name": "Rick Kazman",
-    "password": "kazmanpassword",
-    "email": "kazman@hawaii.edu"
+    "password": "$2b$12$3NjhLphndKoeT3K87Dvs4./lnvjAZ1.lcZ/a4uYY7Aq7BNgWzGDoC",
+    "email": "kazman@hawaii.edu",
+    "migratedAt": "2025-08-11T02:23:54.484Z"
   },
   "itm352": {
     "name": "ITM 352",
-    "password": "grader",
-    "email": "itm352@hawaii.edu"
+    "password": "$2b$12$RWZtdk0exXOKujiGutAzTenl/5lf/t2BSBtsZ2YAF3GxyQsJnZGX6",
+    "email": "itm352@hawaii.edu",
+    "migratedAt": "2025-08-11T02:23:54.714Z"
   },
   "jacobrg": {
     "name": "Jacob Graham",
-    "password": "admintest",
-    "email": "jacobrg@hawaii.edu"
+    "password": "$2b$12$MZ2PrbKTONWcvXA7DCKuM.atyIri1o9hv5COn8r3bWbHp8aBKkirO",
+    "email": "jacobrg@hawaii.edu",
+    "migratedAt": "2025-08-11T02:23:54.939Z"
   }
 }

@@ -1,4 +1,4 @@
-// function and format derived from w3schools navbar tutorial https://www.w3schools.com/css/css_navbar.asp and w3schools dropdown tutorial https://www.w3schools.com/tags/tag_select.asp
+// Navigation bar component
 function navbar() {
     document.write(`
     <div class="navbar">
