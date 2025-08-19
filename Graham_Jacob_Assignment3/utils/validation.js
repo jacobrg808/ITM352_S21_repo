@@ -6,13 +6,7 @@ function isNonNegInt(value) {
     return Number.isInteger(num) && num >= 0;
 }
 
-/**
- * Check if a value is a positive number
- */
-function isPositiveNumber(value) {
-    const num = Number(value);
-    return !isNaN(num) && num > 0;
-}
+
 
 /**
  * Sanitize string input
@@ -48,7 +42,6 @@ function isValidName(name) {
 
 module.exports = {
     isNonNegInt,
-    isPositiveNumber,
     sanitizeString,
     isValidEmail,
     isValidUsername,

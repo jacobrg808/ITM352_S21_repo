@@ -1,72 +1,107 @@
 # Jacob's Pokémon Card Shop
 
-A secure e-commerce web application for selling Pokémon trading cards, built with Node.js and Express.
+A secure, production-ready e-commerce web application for selling Pokémon trading cards, built with Node.js and Express.
 
 ## Features
 
-- **Secure Authentication**: Bcrypt password hashing, session management
+- **Secure Authentication**: Bcrypt password hashing, session management, rate limiting
 - **Product Catalog**: Cards, Premium Collection Boxes, Elite Trainer Boxes
 - **Shopping Cart**: Add items, calculate totals with tax and shipping
-- **Invoice Generation**: Email receipts to customers
-- **Security**: Rate limiting, input validation, CSRF protection, security headers
+- **Email System**: Invoice receipts, welcome emails, automated notifications
+- **Enterprise Security**: Input validation, CSRF protection, security headers
+- **Modular Architecture**: Clean separation of concerns, maintainable codebase
+- **Developer Tools**: Automated backups, migration scripts, development utilities
 
-## Security Improvements
+## Recent Optimizations (2025)
 
-This application has been enhanced with modern security practices:
+### Architecture Improvements
+- **Modular Configuration**: Centralized config management in `/config` directory
+- **Service Layer**: Dedicated email and database services
+- **Middleware Organization**: Structured authentication middleware
+- **Clean File Structure**: Optimized project organization
 
-- ✅ Password hashing with bcrypt
-- ✅ Input validation and sanitization
-- ✅ Rate limiting for authentication routes
-- ✅ Security headers with Helmet.js
-- ✅ Session security configuration
-- ✅ Environment variable configuration
-- ✅ Error handling middleware
-- ✅ Structured route organization
+### Security Enhancements
+- **Password Security**: Bcrypt hashing with configurable rounds
+- **Input Validation**: Comprehensive sanitization and validation
+- **Rate Limiting**: Tiered protection (general + auth-specific)
+- **Security Headers**: Helmet.js with CSP configuration
+- **Session Management**: Secure, HttpOnly cookies with expiration
+- **Environment Config**: Secure credential management
 
-## Installation
+### Developer Experience
+- **Automated Scripts**: Migration, backup, and maintenance tools
+- **Code Quality**: Removed redundant code and comments
+- **Documentation**: Comprehensive setup and deployment guides
+- **Error Handling**: Robust error management throughout
 
-1. Clone the repository
-2. Install dependencies:
+## Quick Start
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone and setup**:
    ```bash
+   git clone <repository-url>
+   cd pokemon-card-shop
    npm install
    ```
 
-3. Copy environment configuration:
+2. **Configure environment**:
    ```bash
    cp .env.example .env
+   # Edit .env with your settings
    ```
 
-4. Update `.env` with your configuration
-
-5. Migrate existing passwords (if upgrading):
+3. **Initialize database** (if upgrading from old version):
    ```bash
-   node scripts/migrate-passwords.js
+   npm run migrate
    ```
 
-6. Start the server:
+4. **Start the application**:
    ```bash
+   # Production
    npm start
-   ```
-
-   For development with auto-restart:
-   ```bash
+   
+   # Development (with auto-reload)
    npm run dev
    ```
 
-## Environment Variables
+5. **Access the application**:
+   - Open http://localhost:8080
+   - Default test users available (see user_data.json)
 
-- `PORT`: Server port (default: 8080)
-- `NODE_ENV`: Environment (development/production)
-- `SESSION_SECRET`: Secret key for session encryption
-- `EMAIL_HOST`: SMTP server host
-- `EMAIL_PORT`: SMTP server port
-- `EMAIL_USER`: Email username
-- `EMAIL_FROM`: From email address
-- `BCRYPT_ROUNDS`: Password hashing rounds (default: 12)
-- `TAX_RATE`: Tax rate for calculations
-- `FREE_SHIPPING_THRESHOLD`: Minimum order for free shipping
-- `STANDARD_SHIPPING_RATE`: Standard shipping cost
-- `PREMIUM_SHIPPING_RATE`: Premium shipping rate percentage
+## Configuration
+
+### Environment Variables
+
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| `PORT` | Server port | 8080 | No |
+| `NODE_ENV` | Environment mode | development | No |
+| `SESSION_SECRET` | Session encryption key | - | Yes |
+| `EMAIL_HOST` | SMTP server host | - | Yes |
+| `EMAIL_PORT` | SMTP server port | 25 | No |
+| `EMAIL_FROM` | From email address | - | Yes |
+| `BCRYPT_ROUNDS` | Password hashing rounds | 12 | No |
+| `TAX_RATE` | Tax rate (decimal) | 0.04712 | No |
+| `FREE_SHIPPING_THRESHOLD` | Free shipping minimum | 50 | No |
+| `STANDARD_SHIPPING_RATE` | Standard shipping cost | 5 | No |
+| `PREMIUM_SHIPPING_RATE` | Premium shipping rate | 0.05 | No |
+
+### Example .env
+```bash
+PORT=8080
+NODE_ENV=development
+SESSION_SECRET=your-super-secret-key-here
+EMAIL_HOST=mail.hawaii.edu
+EMAIL_PORT=25
+EMAIL_FROM=your-email@hawaii.edu
+BCRYPT_ROUNDS=12
+TAX_RATE=0.04712
+```
 
 ## Project Structure
 
@@ -74,30 +109,49 @@ This application has been enhanced with modern security practices:
 ├── server.js              # Main server file
 ├── package.json           # Dependencies and scripts
 ├── .env                   # Environment variables
+├── config/
+│   ├── database.js       # Database configuration
+│   ├── email.js          # Email service
+│   └── products.js       # Product catalog data
 ├── routes/
 │   ├── auth.js           # Authentication routes
 │   └── shop.js           # Shopping and invoice routes
 ├── models/
 │   └── User.js           # User data management
+├── middleware/
+│   └── auth.js           # Authentication middleware
 ├── utils/
 │   ├── auth.js           # Authentication utilities
 │   └── validation.js     # Input validation functions
 ├── scripts/
-│   └── migrate-passwords.js # Password migration script
+│   ├── migrate-passwords.js # Password migration script
+│   └── backup-data.js    # Data backup script
 ├── public/               # Static files (HTML, CSS, JS, images)
 └── user_data.json       # User database (JSON file)
 ```
 
 ## API Endpoints
 
-### Authentication
-- `POST /process_login` - User login
-- `POST /process_register` - User registration
-- `GET /logout` - User logout
+### Authentication Routes
+| Method | Endpoint | Description | Rate Limited |
+|--------|----------|-------------|--------------|
+| `POST` | `/process_login` | User authentication | Yes (5/15min) |
+| `POST` | `/process_register` | User registration | Yes (5/15min) |
+| `GET` | `/logout` | User logout | No |
 
-### Shopping
-- `POST /process_form` - Process shopping cart
-- `POST /gen_invoice` - Generate and email invoice
+### Shopping Routes
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| `POST` | `/process_form` | Process shopping cart | No |
+| `POST` | `/gen_invoice` | Generate invoice & email | Yes |
+
+### Static Routes
+- `GET /` - Homepage
+- `GET /login.html` - Login page
+- `GET /register.html` - Registration page
+- `GET /cards.html` - Individual cards catalog
+- `GET /coll_boxes.html` - Collection boxes catalog
+- `GET /etbs.html` - Elite trainer boxes catalog
 
 ## Security Features
 
@@ -120,33 +174,149 @@ This application has been enhanced with modern security practices:
 
 ## Development
 
-### Adding New Products
-Update `public/products_data.js` with new product information.
+### Available Scripts
+```bash
+npm start          # Start production server
+npm run dev        # Start development server with auto-reload
+npm run migrate    # Migrate passwords to hashed format
+npm run backup     # Create data backup
+```
 
-### Adding New Routes
-Create route files in the `routes/` directory and import them in `server.js`.
+### Adding New Features
 
-### Database Migration
-Currently uses JSON file storage. For production, consider migrating to:
-- MongoDB with Mongoose
-- PostgreSQL with Sequelize
-- MySQL with Sequelize
+#### **New Products**
+1. Edit `config/products.js`
+2. Add product images to `public/images/`
+3. Update product pages in `public/`
+
+#### **New Routes**
+1. Create route file in `routes/`
+2. Import and use in `server.js`
+3. Add rate limiting if needed
+
+#### **New Email Templates**
+1. Add methods to `config/email.js`
+2. Use EmailService in routes
+
+### Code Organization
+```
+config/     # Configuration & services
+├── database.js    # Data operations
+├── email.js       # Email templates
+└── products.js    # Product catalog
+
+middleware/ # Custom middleware
+└── auth.js        # Authentication
+
+models/     # Data models
+└── User.js        # User management
+
+routes/     # Route handlers
+├── auth.js        # Login/register
+└── shop.js        # Shopping/checkout
+
+utils/      # Utilities
+├── auth.js        # Auth helpers
+└── validation.js  # Input validation
+```
 
 ## Production Deployment
 
-1. Set `NODE_ENV=production`
-2. Use a proper database instead of JSON files
-3. Configure HTTPS
-4. Set up proper logging
-5. Use a process manager like PM2
-6. Configure reverse proxy (nginx)
-7. Set up monitoring and backups
+### Pre-deployment Checklist
+- [ ] Set `NODE_ENV=production`
+- [ ] Configure secure `SESSION_SECRET`
+- [ ] Set up HTTPS certificates
+- [ ] Configure production database
+- [ ] Set up email service (SMTP)
+- [ ] Configure reverse proxy
+- [ ] Set up monitoring and logging
+
+### Deployment Steps
+
+1. **Environment Setup**:
+   ```bash
+   export NODE_ENV=production
+   # Configure production .env
+   ```
+
+2. **Database Migration**:
+   ```bash
+   # Backup current data
+   npm run backup
+   
+   # For production, migrate to proper DB
+   # MongoDB, PostgreSQL, or MySQL
+   ```
+
+3. **Process Management**:
+   ```bash
+   # Install PM2
+   npm install -g pm2
+   
+   # Start with PM2
+   pm2 start server.js --name pokemon-shop
+   pm2 startup
+   pm2 save
+   ```
+
+4. **Reverse Proxy (nginx)**:
+   ```nginx
+   server {
+       listen 80;
+       server_name yourdomain.com;
+       
+       location / {
+           proxy_pass http://localhost:8080;
+           proxy_set_header Host $host;
+           proxy_set_header X-Real-IP $remote_addr;
+       }
+   }
+   ```
+
+5. **SSL/HTTPS**:
+   ```bash
+   # Using Let's Encrypt
+   certbot --nginx -d yourdomain.com
+   ```
+
+### Monitoring & Maintenance
+- **Logs**: `pm2 logs pokemon-shop`
+- **Status**: `pm2 status`
+- **Restart**: `pm2 restart pokemon-shop`
+- **Backups**: Schedule `npm run backup` via cron
+
+## Testing
+
+### Manual Testing
+1. **Registration**: Create new user account
+2. **Login**: Authenticate with credentials  
+3. **Shopping**: Add items to cart
+4. **Checkout**: Complete purchase flow
+5. **Email**: Verify invoice delivery
+
+### Test Users (Development)
+```json
+{
+  "dport": { "password": "portspassword" },
+  "kazman": { "password": "kazmanpassword" },
+  "itm352": { "password": "grader" },
+  "jacobrg": { "password": "admintest" }
+}
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
 ## License
 
 MIT License - see LICENSE file for details.
 
-## Original Author
-
-Jacob Graham (2021) - Original implementation
-Enhanced with security and best practices (2025)
+## Author
+- **Jacob Graham** 
+ - Original implementation (2021)
+ - Security hardening, architecture optimization, production readiness (2025)

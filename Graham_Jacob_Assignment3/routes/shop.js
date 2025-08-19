@@ -1,14 +1,15 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const queryString = require('query-string');
-const nodemailer = require('nodemailer');
 const { isNonNegInt } = require('../utils/validation');
 const { requireAuth } = require('../utils/auth');
 const User = require('../models/User');
+const EmailService = require('../config/email');
 
 const router = express.Router();
 const userModel = new User();
-const data = require('../public/products_data.js');
+const emailService = new EmailService();
+const data = require('../config/products.js');
 const productsList = data.productsList;
 const processFormValidation = [
     body('quantity_textbox*').custom((value, { req }) => {
@@ -113,7 +114,7 @@ router.post('/gen_invoice', requireAuth, async (req, res) => {
         const total = subtotal + taxAmount + shipping;
 
         const invoiceHTML = `
-            <link href="./style/style_misc.css" rel="stylesheet">
+            <link href="./style/style_products.css" rel="stylesheet">
             <h1>Purchase confirmed!</h1>
             <br><b>Thank you for shopping at Jacob's Pokémon Card Shop!</b></br>
             <br><b>An email has been sent to ${user.email}.</b></br>
@@ -151,7 +152,7 @@ router.post('/gen_invoice', requireAuth, async (req, res) => {
             </table>
         `;
 
-        await sendInvoiceEmail(user.email, invoiceHTML);
+        await emailService.sendInvoice(user.email, invoiceHTML);
         
         res.send(invoiceHTML);
     } catch (error) {
@@ -159,30 +160,5 @@ router.post('/gen_invoice', requireAuth, async (req, res) => {
         res.status(500).send('An error occurred while generating your invoice. Please try again.');
     }
 });
-
-async function sendInvoiceEmail(email, invoiceHTML) {
-    try {
-        const transporter = nodemailer.createTransporter({
-            host: process.env.EMAIL_HOST,
-            port: parseInt(process.env.EMAIL_PORT),
-            secure: false,
-            tls: {
-                rejectUnauthorized: false
-            }
-        });
-
-        const mailOptions = {
-            from: process.env.EMAIL_FROM,
-            to: email,
-            subject: 'Your Pokemon Card Shop Invoice',
-            html: invoiceHTML
-        };
-
-        await transporter.sendMail(mailOptions);
-        console.log('Invoice email sent successfully to:', email);
-    } catch (error) {
-        console.error('Email sending error:', error);
-    }
-}
 
 module.exports = router;

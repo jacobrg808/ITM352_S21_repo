@@ -1,37 +1,18 @@
-const fs = require('fs');
-const path = require('path');
 const { hashPassword, comparePassword } = require('../utils/auth');
+const Database = require('../config/database');
 
 class User {
     constructor() {
-        this.userDataFile = path.join(__dirname, '..', 'user_data.json');
-        this.users = this.loadUsers();
+        this.db = new Database();
+        this.users = this.db.read();
     }
 
     /**
-     * Load users from JSON file
-     */
-    loadUsers() {
-        try {
-            if (fs.existsSync(this.userDataFile)) {
-                const data = fs.readFileSync(this.userDataFile, 'utf-8');
-                return JSON.parse(data);
-            }
-            return {};
-        } catch (error) {
-            console.error('Error loading users:', error);
-            return {};
-        }
-    }
-
-    /**
-     * Save users to JSON file
+     * Save users to database
      */
     saveUsers() {
-        try {
-            fs.writeFileSync(this.userDataFile, JSON.stringify(this.users, null, 2));
-        } catch (error) {
-            console.error('Error saving users:', error);
+        const success = this.db.write(this.users);
+        if (!success) {
             throw new Error('Failed to save user data');
         }
     }

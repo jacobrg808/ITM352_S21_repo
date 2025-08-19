@@ -1,18 +1,17 @@
 // Migrate existing plain text passwords to hashed passwords
 require('dotenv').config();
-const fs = require('fs');
 const bcrypt = require('bcrypt');
+const Database = require('../config/database');
 
 async function migratePasswords() {
     try {
-        const userDataFile = './user_data.json';
+        const db = new Database();
+        const users = db.read();
         
-        if (!fs.existsSync(userDataFile)) {
-            console.log('user_data.json not found, skipping migration');
+        if (Object.keys(users).length === 0) {
+            console.log('No users found, skipping migration');
             return;
         }
-
-        const users = JSON.parse(fs.readFileSync(userDataFile, 'utf-8'));
         const saltRounds = parseInt(process.env.BCRYPT_ROUNDS) || 12;
 
         console.log('Migrating passwords to hashed format...');
@@ -30,8 +29,12 @@ async function migratePasswords() {
             }
         }
 
-        fs.writeFileSync(`${userDataFile}.backup`, JSON.stringify(users, null, 2));
-        fs.writeFileSync(userDataFile, JSON.stringify(users, null, 2));
+        const backupFile = db.backup();
+        if (backupFile) {
+            console.log(`Backup created: ${backupFile}`);
+        }
+        
+        db.write(users);
         
         console.log('Password migration completed successfully!');
         console.log('Original file backed up as user_data.json.backup');

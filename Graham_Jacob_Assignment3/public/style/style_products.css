@@ -1,5 +1,10 @@
 /* Pokemon Card Shop Styles */
 
+/* Invoice specific styles */
+#invoice {
+    background-color: #EBEBEB;
+}
+
 /* Imaging */
 img {
     max-width: 100%;
